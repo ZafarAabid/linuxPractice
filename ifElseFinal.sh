@@ -7,7 +7,7 @@ if [ $isPresent < $present ]
 then
 	echo Person is absent ???
 elif [ $isPresent -eq $present ]
-	echo person is absent.....
+	echo person is present.....
 else 
 	echo Person is flee !!!!
 done
