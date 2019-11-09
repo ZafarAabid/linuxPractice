@@ -1,13 +1,15 @@
 #!/bin/bash
 
-isPresent=1
-present=$(( RANDOM % 2))
+isPresent=2
+present=$(( RANDOM % 3))
 
-if [ $isPresent -eq $present ]
+if [ $isPresent < $present ]
 then
-	echo Person is present
-else
+	echo Person is absent
+elif [ $isPresent -eq $present ]
 	echo person is absent
+else 
+	echo Person is flee
 done
 
 
