@@ -6,7 +6,6 @@ present=$(( RANDOM % 3))
 if [ $isPresent < $present ]
 then
 
-
 	echo Person is absent
 elif [ $isPresent -eq $present ]
 	echo person is absent
