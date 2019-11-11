@@ -1,14 +1,14 @@
 #! /bin/bash -x
 
 counter=0;
-
-Fruits[((counter++))]=""
-
 ratePerHr=100;
 isPartTime=1;
 isFullTime=2;
 sum=0;
 
+function myfunc() { 
+echo ""
+}
 for(( day=1; day<=20; day++))
 do
 	randomCheck=$(( RANDOM % 3))
@@ -25,6 +25,6 @@ do
 	
 	wage=$(( $ratePerHr * $workingHr ))
 	sum=$(( $sum + $wage ))
-	wageArray[((cpunter++))]=$sum
+	wageArray[((counter++))]=$sum
 done
 echo ${wageArray[@]}
