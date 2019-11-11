@@ -1,50 +1,55 @@
-#! /bin/bash -x
+#! /bin/bash 
+totalNoOfDays=20
+totalHours=0
+perDayWage=[]
+ratePerHour=18
+declare -A wagePerDay
+function calculations()
+	{
+		isFullTime=1
+		isPartTime=2
+		empCheck=$((RANDOM%3))
+		case $empCheck in
+			$isFullTime)
+			hours=8;;
+			$isPartTime)
+			hours=4;;
+			*)
+			hours=0;;
+		esac
+		echo $hours
+	}
 
-flag=true;
-counter=0;
-ratePerHr=100;
-isPartTime=1;
-isFullTime=2;
-sum=0;
-maxHr=50;
-workingHr=0;
 
-function validTime() {
-	getValue=$1
-	workingHr= $( $workingHr + $getValue )
-	if [ workingHr <= 50 ]
-	then
-		flag=true;
-	fi
+function dailyWage()
+{
+	wage=$(($ratePerHour*$1))
+	echo $wage
+}
 
-	if [ workingHr > 50]
-	then
-		flag=false;
-	fi
-	echo $workingHr
+function inDictionary()
+{
+	wagePerDay[$1]=$2
 }
 
 
-for(( day=1; day<=20; day++))
+for (( day=0; day<=$totalNoOfDays; day++ ))
 do
-	if [ $flag ]
-	then
-		randomCheck=$(( RANDOM % 3))
-		case $randomCheck in
-		$isFullTime)
-			workedToday=6 ;;
-		$isPartTime)
-			workedToday=3
-		;;
-		*)
-			workedToday=0
-		;;
-		esac
-	workingHr="$( validTime $(( workedToday )) )"
-	
-	wage=$(( $ratePerHr * $workingHr ))
-	sum=$(( $sum + $wage ))
-	wageArray[((counter++))]=$sum
-	fi
-	done
-echo ${wageArray[@]}
+	calchrs=" $( calculations ) "
+	DayWage="$( dailyWage $calchrs )" 
+	perDayWage[((counter++))]=$DayWage
+	inDictionary $day $DayWage
+	totalHours=$(($totalHours+$calchrs))
+done
+
+	totalSalary=$(($ratePerHour*$totalHours))
+	wagePerDay[TotalSalary]=$totalSalary
+	# echo ${perDayWage[@]} #printing using array
+	echo Dictionary ${wagePerDay[@]} #printing using dictionary
+
+for (( count=0; count < ${#perDayWage[@]}; count++ ))
+do
+	echo  "payment of day " $count "is" ${perDayWage[count]}
+
+done
+echo " Final Payment is " $totalSalary
